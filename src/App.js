@@ -7,7 +7,7 @@ const api = {
 
 function App() {
   const [query, setQuery] = useState('');
-  const [weather, setWeather] = useState({});
+  const [weather, setWeather] = useState([]);
 
   const search = evt => {
     if (evt.key === "Enter") {
@@ -35,10 +35,10 @@ function App() {
     return `${day} ${date} ${month} ${year}`
   }
   
-  console.log(weather)
-  return (
-   
+ 
+    return (
     <div className={(typeof weather.list!= "undefined") ? ((weather.list[0].main.temp > 16) ? 'app warm' : 'app') : 'app'}>
+      {console.log(weather)}
       <main>
         <div className="search-box">
           <input 
@@ -51,20 +51,24 @@ function App() {
           />
         </div>
         {(typeof weather.list != "undefined") ? (
+         
+          weather.list.map(e => { return (
         <div className="container">
             <div className="location">{weather.city.name}, {weather.city.country}</div>
             <div className="date">{dateBuilder(new Date())}</div>
             <div className="temp">
-              {Math.round(weather.list[0].main.temp)}°c
+              {Math.round(e.main.temp)}°c
             </div>
-            <div className="weather">{weather.list[0].weather[0].main}</div>
-            <div className="wind">Win speed: {Math.round(weather.list[0].wind.speed*3.6)} Km/h</div>
-            <img src={`http://openweathermap.org/img/wn/${weather.list[0].weather[0].icon}@2x.png`} alt='' />
+            <div className="weather">{e.weather[0].main}</div>
+            <div className="wind">Win speed: {Math.round(e.wind.speed*3.6)} Km/h</div>
+            <img src={`http://openweathermap.org/img/wn/${e.weather.icon}@2x.png`} alt='' />
         </div>
-        ) : ('')}
+          )})
+        ): ('')}
       </main>
+      
     </div>
-  );
+    )
 }
 
 export default App;
