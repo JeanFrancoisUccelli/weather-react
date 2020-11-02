@@ -56,31 +56,52 @@ main {
   background-color: rgba(255, 255, 255, 0.75);
 }
 
-.location-box .location {
+.location {
   color: #FFF;
   font-size: 32px;
   font-weight: 500;
   text-align: center;
   text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+  grid-column: 1 / 4;
+  grid-row: 1 / 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
 }
 
-.location-box .date {
+.date {
   color: #FFF;
   font-size: 20px;
   font-weight: 300;
   font-style: italic;
   text-align: center;
   text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
+  grid-column: 4 / 6;
+  grid-row: 1 / 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
 }
 
-.weather-box {
+/* .location-box {
+  grid-column: 1 / 3;
+  grid-row: 1;
+} */
+
+/* .weather-box {
   text-align: center;
-}
+  grid-column: 1 / 3;
+  grid-row: 2;
+} */
 
-.weather-box .temp {
-  position: relative;
-  display: inline-block;
-  margin: 30px auto;
+.temp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 16px;
 
@@ -93,11 +114,44 @@ main {
   text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
   text-align: center;
   box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
 }
 
-.weather-box .weather {
+.weather {
   color: #FFF;
   font-size: 48px;
   font-weight: 700;
   text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+  grid-column: 1 / 3;
+  grid-row: 2 / 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+}
+
+.wind {
+  color: #FFF;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+  text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
+  grid-column: 3 / 6;
+  grid-row: 3 /5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-gap: 10px;
 }
