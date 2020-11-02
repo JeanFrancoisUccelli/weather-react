@@ -11,12 +11,14 @@ function App() {
 
   const search = evt => {
     if (evt.key === "Enter") {
-      // fetch(`${api.base}forecast?q=${query}&units=metric&cnt=3&APPID=${api.key}`)
-      fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
+      fetch(`${api.base}forecast?q=${query}&units=metric&cnt=3&APPID=${api.key}`)
+      // fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
         .then(res => res.json())
         .then(result => {
           setWeather(result);
           setQuery('');
+          console.log(result)
+          console.log(weather)
         });
     }
      
@@ -33,10 +35,10 @@ function App() {
     return `${day} ${date} ${month} ${year}`
   }
   
-  
+  console.log(weather)
   return (
    
-    <div className={(typeof weather.main !== "undefined") ? ((weather.main.temp > 16) ? 'app warm' : 'app') : 'app'}>
+    <div className={(typeof weather.list!= "undefined") ? ((weather.list[0].main.temp > 16) ? 'app warm' : 'app') : 'app'}>
       <main>
         <div className="search-box">
           <input 
@@ -48,16 +50,16 @@ function App() {
             onKeyPress={search}
           />
         </div>
-        {(typeof weather.main != "undefined") ? (
+        {(typeof weather.list != "undefined") ? (
         <div className="container">
-            <div className="location">{weather.name}, {weather.sys.country}</div>
+            <div className="location">{weather.city.name}, {weather.city.country}</div>
             <div className="date">{dateBuilder(new Date())}</div>
             <div className="temp">
-              {Math.round(weather.main.temp)}°c
+              {Math.round(weather.list[0].main.temp)}°c
             </div>
-            <div className="weather">{weather.weather[0].main}</div>
-            <div className="wind">Win speed: {Math.round(weather.wind.speed*3.6)} Km/h</div>
-            <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt='' />
+            <div className="weather">{weather.list[0].weather[0].main}</div>
+            <div className="wind">Win speed: {Math.round(weather.list[0].wind.speed*3.6)} Km/h</div>
+            <img src={`http://openweathermap.org/img/wn/${weather.list[0].weather[0].icon}@2x.png`} alt='' />
         </div>
         ) : ('')}
       </main>
