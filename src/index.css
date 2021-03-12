@@ -5,23 +5,28 @@
 }
 
 body {
-  font-family: 'montseratt', sans-serif;
+  font-family: "montseratt", sans-serif;
 }
 
 .app {
-  background-image: url('./assets/cold-bg.jpg');
+  background-image: url("./assets/cold-bg.jpg");
   background-size: cover;
   background-position: bottom;
   transition: 0.4 ease;
 }
 
 .app.warm {
-  background-image: url('./assets/warm-bg.jpg');
+  background-image: url("./assets/warm-bg.jpg");
 }
 
 main {
+  width: 100vw;
   min-height: 100vh;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.75));
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.75)
+  );
   padding: 25px;
 }
 
@@ -45,7 +50,7 @@ main {
   margin-top: -25px;
 
   box-shadow: 0px 5px rgba(0, 0, 0, 0.2);
-  
+
   color: #313131;
   font-size: 20px;
 
@@ -57,33 +62,24 @@ main {
 }
 
 .location {
-  color: #FFF;
-  font-size: 32px;
+  height: 30px;
+  color: #fff;
+  font-size: 20px;
   font-weight: 500;
-  text-align: center;
-  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
-  grid-column: 1 / 4;
-  grid-row: 1 / 2;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
 }
 
 .date {
-  color: #FFF;
-  font-size: 20px;
-  font-weight: 300;
+  color: #fff;
+  font-size: 25px;
+  font-weight: 600;
   font-style: italic;
   text-align: center;
-  text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
-  grid-column: 4 / 6;
-  grid-row: 1 / 3;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 16px;
 }
 
@@ -102,58 +98,82 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 16px;
-
   padding: 15px 25px;
-
-  color: #FFF;
-  font-size: 102px;
+  color: #fff;
+  font-size: 50px;
   font-weight: 900;
-
-  text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
   text-align: center;
-  box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
-
-  grid-column: 3 / 4;
-  grid-row: 2 / 3;
 }
 
 .weather {
-  color: #FFF;
-  font-size: 48px;
+  color: #fff;
+  font-size: 20px;
   font-weight: 700;
-  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
-  grid-column: 1 / 3;
-  grid-row: 2 / 4;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
 }
 
 .wind {
-  color: #FFF;
+  color: #fff;
   font-size: 20px;
   font-weight: 300;
   font-style: italic;
   text-align: center;
-  text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
-  grid-column: 3 / 6;
-  grid-row: 3 /5;
+}
+
+.icon {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
 }
 
 .container {
+  width: 12vw;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.mainContainer {
   width: 100%;
-  height: 15rem;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.forewardForcast {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.todayForecast {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 60px;
+  border: 1px solid white;
+  border-radius: 15px;
+  width:fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title{
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  margin-bottom: 60px;
+}
+
+.temp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
