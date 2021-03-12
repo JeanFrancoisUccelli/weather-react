@@ -35,38 +35,38 @@ function App() {
         });
     }
   };
-  const dateBuilder = (d) => {
-    let months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    let days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
+  // const dateBuilder = (d) => {
+  //   let months = [
+  //     "January",
+  //     "February",
+  //     "March",
+  //     "April",
+  //     "May",
+  //     "June",
+  //     "July",
+  //     "August",
+  //     "September",
+  //     "October",
+  //     "November",
+  //     "December",
+  //   ];
+  //   let days = [
+  //     "Sunday",
+  //     "Monday",
+  //     "Tuesday",
+  //     "Wednesday",
+  //     "Thursday",
+  //     "Friday",
+  //     "Saturday",
+  //   ];
 
-    let day = days[d.getDay()].slice(0, 4);
-    let date = d.getDate();
-    let month = months[d.getMonth()].slice(0, 3);
-    let year = d.getFullYear();
+  //   let day = days[d.getDay()].slice(0, 4);
+  //   let date = d.getDate();
+  //   let month = months[d.getMonth()].slice(0, 3);
+  //   let year = d.getFullYear();
 
-    return `${day} ${date} ${month} ${year}`;
-  };
+  //   return `${day} ${date} ${month} ${year}`;
+  // };
 
   const addFavorites = () => {
     favorites.push("kiwi");
@@ -148,7 +148,7 @@ function App() {
                       </div>
                       <div className="weather">{x.weather[0].description}</div>
                       <div className="wind">
-                        {Math.round(x.wind.speed * 3.6)} Km/h
+                        Wind : {Math.round(x.wind.speed * 3.6)} Km/h
                       </div>
                       <div className="icon">
                         <img

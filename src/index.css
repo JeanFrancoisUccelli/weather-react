@@ -114,6 +114,11 @@ main {
   justify-content: center;
   align-items: center;
 }
+@media screen and (max-width: 640px) {
+  .weather {
+    font-size: 14px;
+  }
+}
 
 .wind {
   color: #fff;
@@ -124,7 +129,7 @@ main {
 }
 
 .icon {
-  width: 100%;
+  width: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -132,12 +137,19 @@ main {
 
 .container {
   width: 12vw;
-  margin-left: 15px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border: 1px solid white;
   border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.2);
+}
+@media screen and (max-width: 640px) {
+  .container {
+    width: 90%;
+    margin-bottom: 10px;
+  }
 }
 
 .mainContainer {
@@ -150,22 +162,40 @@ main {
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
+}
+@media screen and (max-width: 640px) {
+  .forewardForcast {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .todayForecast {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-evenly;
   margin-bottom: 60px;
   border: 1px solid white;
   border-radius: 15px;
-  width:fit-content;
+  width: 40%;
   margin-left: auto;
   margin-right: auto;
 }
 
-.title{
+@media screen and (max-width: 640px) {
+  .todayForecast {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+  }
+}
+
+.title {
   font-size: 20px;
   text-align: center;
   color: white;
@@ -173,7 +203,16 @@ main {
 }
 
 .temp {
+  width: 40rem;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
+}
+@media screen and (max-width: 640px) {
+  .temp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
