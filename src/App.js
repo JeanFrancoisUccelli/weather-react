@@ -1,6 +1,5 @@
 /* eslint-disable no-template-curly-in-string */
 import React, { useState } from "react";
-import moment from "moment";
 
 const api = {
   key: "6654f8cea88d659f746234255cd4fb63",
@@ -8,11 +7,10 @@ const api = {
 };
 
 function App() {
-  const [query, setQuery] = useState("coudoux");
+  const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
   const [list, setList] = useState({});
   const [todayWeather, setTodayWeather] = useState({});
-  const favorites = [];
 
   const search = (evt) => {
     if (evt.key === "Enter") {
@@ -23,7 +21,6 @@ function App() {
         .then((res) => res.json())
         .then((result) => {
           setWeather(result);
-          setQuery("");
           setList(result.list);
         });
       fetch(
@@ -67,11 +64,13 @@ function App() {
 
   //   return `${day} ${date} ${month} ${year}`;
   // };
+  // useEffect(() => {
+  //   setFavorites(query);
+  // }, [query]);
 
-  const addFavorites = () => {
-    favorites.push("kiwi");
-    console.log(favorites);
-  };
+  // const addFavorites = () => {
+  //   favorites.push("kiwi");
+  // };
 
   return (
     <div
@@ -94,29 +93,39 @@ function App() {
             onKeyPress={search}
           />
         </div>
-        <div className="bouton">
-          <button onClick={() => addFavorites()}> Ajouter aux favoris</button>
-        </div>
+        {/* <div className="bouton">
+          <button
+            onClick={() => {
+              favorites.push("kiwi");
+              console.log(favorites);
+            }}
+          >
+            {" "}
+            Ajouter aux favoris
+          </button>
+        </div> */}
 
         <div className="mainContainer">
-          <div className="title">
-            {moment().format("LL")} in {todayWeather.name}
-          </div>
-          <div className="todayForecast">
-            {typeof todayWeather.main != "undefined" ? (
-              <>
-                <div className="weather">
-                  {todayWeather.weather[0].description}
-                </div>
-                <div className="weather">
-                  {Math.round(todayWeather.main.temp)}°c
-                </div>
-                <div className="icon">
-                  <img
-                    src={`http://openweathermap.org/img/wn/${todayWeather.weather[0].icon}@2x.png`}
-                    alt=""
-                  />
-                </div>
+          {typeof todayWeather.main != "undefined" ? (
+            <>
+              <div className="mainTitle">Today weather</div>
+                <div className="todayForecast">
+                  <div className="weatherDescription">
+                    <div className="title">{todayWeather.name}</div>
+                    <div className="weather">
+                      {todayWeather.weather[0].description}
+                    </div>
+                    <div className="weather">
+                      {Math.round(todayWeather.main.temp)}°c
+                    </div>
+                    <div className="icon">
+                      <img
+                        src={`http://openweathermap.org/img/wn/${todayWeather.weather[0].icon}@2x.png`}
+                        alt=""
+                      />
+                    </div>
+                  </div>
+               
                 <div className="temp">
                   <div className="weather">
                     Temp min: {todayWeather.main.temp_min}
@@ -128,11 +137,11 @@ function App() {
                     {Math.round(todayWeather.wind.speed * 3.6)} Km/h
                   </div>
                 </div>
-              </>
-            ) : (
-              ""
-            )}
-          </div>
+              </div>
+            </>
+          ) : (
+            ""
+          )}
 
           <div className="forewardForcast">
             {list.length > 0
@@ -160,8 +169,8 @@ function App() {
                   );
                 })
               : ""}
+              </div>
           </div>
-        </div>
       </main>
     </div>
   );
