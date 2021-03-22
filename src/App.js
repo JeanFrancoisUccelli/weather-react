@@ -18,59 +18,29 @@ function App() {
       fetch(
         `${api.base}forecast?q=${query}&units=metric&lang=us&cnt=7&APPID=${api.key}`
       )
-        .then((res) => res.json())
+        .then((res) => {
+          if (res.status === 200) {
+            return res.json();
+          } else {
+            alert("Enter a valid city name");
+            window.location.reload();
+          }
+        })
         .then((result) => {
           setWeather(result);
           setList(result.list);
+        })
+        .catch(function (error) {
+          console.log(
+            "Il y a eu un problème avec l'opération fetch: " + error.message
+          );
         });
       fetch(
         `${api.base}weather?q=${query}&units=metric&lang=us&APPID=${api.key}`
-      )
-        .then((res) => res.json())
-        .then((result) => {
-          setTodayWeather(result);
-        });
+      ).then((res) => res.json())
+       .then((res)=>setTodayWeather(res));
     }
   };
-  // const dateBuilder = (d) => {
-  //   let months = [
-  //     "January",
-  //     "February",
-  //     "March",
-  //     "April",
-  //     "May",
-  //     "June",
-  //     "July",
-  //     "August",
-  //     "September",
-  //     "October",
-  //     "November",
-  //     "December",
-  //   ];
-  //   let days = [
-  //     "Sunday",
-  //     "Monday",
-  //     "Tuesday",
-  //     "Wednesday",
-  //     "Thursday",
-  //     "Friday",
-  //     "Saturday",
-  //   ];
-
-  //   let day = days[d.getDay()].slice(0, 4);
-  //   let date = d.getDate();
-  //   let month = months[d.getMonth()].slice(0, 3);
-  //   let year = d.getFullYear();
-
-  //   return `${day} ${date} ${month} ${year}`;
-  // };
-  // useEffect(() => {
-  //   setFavorites(query);
-  // }, [query]);
-
-  // const addFavorites = () => {
-  //   favorites.push("kiwi");
-  // };
 
   return (
     <div
@@ -87,55 +57,39 @@ function App() {
           <input
             type="search"
             className="search-bar"
-            placeholder="Search..."
+            placeholder="Enter your city name ..."
             onChange={(e) => setQuery(e.target.value)}
             value={query}
             onKeyPress={search}
           />
         </div>
-        {/* <div className="bouton">
-          <button
-            onClick={() => {
-              favorites.push("kiwi");
-              console.log(favorites);
-            }}
-          >
-            {" "}
-            Ajouter aux favoris
-          </button>
-        </div> */}
-
         <div className="mainContainer">
           {typeof todayWeather.main != "undefined" ? (
             <>
               <div className="mainTitle">Today weather</div>
-                <div className="todayForecast">
-                  <div className="weatherDescription">
-                    <div className="title">{todayWeather.name}</div>
-                    <div className="weather">
-                      {todayWeather.weather[0].description}
-                    </div>
-                    <div className="weather">
-                      {Math.round(todayWeather.main.temp)}°c
-                    </div>
-                    <div className="icon">
-                      <img
-                        src={`http://openweathermap.org/img/wn/${todayWeather.weather[0].icon}@2x.png`}
-                        alt=""
-                      />
-                    </div>
-                  </div>
-               
-                <div className="temp">
-                  <div className="weather">
-                    Temp min: {todayWeather.main.temp_min}
-                  </div>
-                  <div className="weather">
-                    Temp max: {todayWeather.main.temp_max}
-                  </div>
-                  <div className="wind">
-                    {Math.round(todayWeather.wind.speed * 3.6)} Km/h
-                  </div>
+              <div className="todayForecast">
+                <div className="title">{todayWeather.name}</div>
+                <div className="weather">
+                  {todayWeather.weather[0].description}
+                </div>
+                <div className="weather">
+                  {Math.round(todayWeather.main.temp)}°c
+                </div>
+                <div className="icon">
+                  <img
+                    src={`http://openweathermap.org/img/wn/${todayWeather.weather[0].icon}@2x.png`}
+                    alt=""
+                  />
+                </div>
+
+                <div className="weather">
+                  Temp min: {todayWeather.main.temp_min}
+                </div>
+                <div className="weather">
+                  Temp max: {todayWeather.main.temp_max}
+                </div>
+                <div className="wind">
+                  Wind: {Math.round(todayWeather.wind.speed * 3.6)} Km/h
                 </div>
               </div>
             </>
@@ -169,8 +123,8 @@ function App() {
                   );
                 })
               : ""}
-              </div>
           </div>
+        </div>
       </main>
     </div>
   );
